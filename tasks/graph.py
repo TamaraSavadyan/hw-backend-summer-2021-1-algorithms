@@ -28,7 +28,33 @@ class Graph:
         self._root = root
 
     def dfs(self) -> list[Node]:
+        initial_root = self._root
+        stack = [self._root]
+        result = []
+        
+        while stack:
+            current = stack.pop()
+            self._root = current
+            result.append(current)
+            for node in self._root.outbound:
+                stack.append(node)
+
+        self._root = initial_root
+        return result
         raise NotImplementedError
 
     def bfs(self) -> list[Node]:
+        initial_root = self._root
+        stack = [self._root]
+        result = []
+
+        while stack:
+            current = stack.pop()
+            self._root = current
+            result.append(current)
+            for node in self._root.outbound:
+                stack.insert(0, node)
+
+        self._root = initial_root
+        return result
         raise NotImplementedError
