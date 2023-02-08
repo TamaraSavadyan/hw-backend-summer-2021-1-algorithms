@@ -1,7 +1,7 @@
 __all__ = (
     'is_prime',
 )
-
+import math
 
 def is_prime(number: int) -> bool:
     """
@@ -11,5 +11,7 @@ def is_prime(number: int) -> bool:
         for i in range(2, int(math.sqrt(number)) + 1):
             if number % i == 0:
                 return False
+    else:
+        return False
     
     return True

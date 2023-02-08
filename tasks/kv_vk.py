@@ -26,6 +26,9 @@ def flip_kv_vk(d: dict[KT, KV]) -> dict[KV, KT]:
     
     new_d = dict()
     for key, value in d.items():
+        if value in new_d:
+            new_d[value] = key
+
         new_d.setdefault(value, key)
 
     return new_d
@@ -49,12 +52,12 @@ def flip_kv_vk_safe(d: dict[KT, KV]) -> dict[KV, list[KT]]:
     for key, value in d.items():
         if value in new_d:
             # convert value to list
-            if isinstance(new_d[value], str):
-                new_d[value] = list(new_d[value].split())
+            # if isinstance(new_d[value], str):
+            #     new_d[value] = list(new_d[value].split())
             # adding new element
             new_d[value].append(key)
             continue
 
-        new_d.setdefault(value, key)
+        new_d.setdefault(value, list(key.split()))
 
     return new_d

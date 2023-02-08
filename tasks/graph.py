@@ -35,13 +35,17 @@ class Graph:
         while stack:
             current = stack.pop()
             self._root = current
+
+            if current in result:
+                continue
             result.append(current)
-            for node in self._root.outbound:
+
+            for node in self._root.outbound[::-1]:
                 stack.append(node)
 
         self._root = initial_root
         return result
-        raise NotImplementedError
+        
 
     def bfs(self) -> list[Node]:
         initial_root = self._root
@@ -51,10 +55,14 @@ class Graph:
         while stack:
             current = stack.pop()
             self._root = current
-            result.append(current)
+
+            if current in result:
+                continue
+            result.append(current) 
+
             for node in self._root.outbound:
                 stack.insert(0, node)
 
         self._root = initial_root
         return result
-        raise NotImplementedError
+        
