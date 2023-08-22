@@ -45,7 +45,7 @@ class Graph:
 
         self._root = initial_root
         return result
-        
+        # random comment, does nothing
 
     def bfs(self) -> list[Node]:
         initial_root = self._root
